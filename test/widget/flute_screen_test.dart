@@ -7,6 +7,8 @@ import 'package:virtual_flute_app/ui/features/flute/view_models/flute_view_model
 import 'package:virtual_flute_app/ui/features/flute/views/flute_screen.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   group('FluteScreen Widget Integration Tests', () {
     late FluteRepository fluteRepository;
     late SongRepository songRepository;

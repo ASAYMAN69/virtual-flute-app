@@ -9,6 +9,8 @@ import 'package:virtual_flute_app/ui/features/flute/views/flute_screen.dart';
 import 'package:virtual_flute_app/ui/features/settings/views/audio_settings_screen.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   Widget createTestWidget(Widget child) {
     final fluteRepo = FluteRepository();
     final songRepo = SongRepository();

@@ -8,23 +8,28 @@ import 'package:virtual_flute_app/data/services/audio_synth_service.dart';
 class AudioPlayerService {
   AudioPlayerService({
     AudioSynthService? synthService,
-  }) : _synthService = synthService ?? AudioSynthService() {
-    _initPlayers();
-  }
+  }) : _synthService = synthService ?? AudioSynthService();
 
   final AudioSynthService _synthService;
   final List<AudioPlayer> _playerPool = [];
   int _currentPlayerIndex = 0;
   static const int _poolSize = 4;
+  bool _isInitialized = false;
 
   // In-memory cache for synthesized note byte arrays
   final Map<String, Uint8List> _noteWavCache = {};
 
-  void _initPlayers() {
-    for (int i = 0; i < _poolSize; i++) {
-      final player = AudioPlayer();
-      player.setReleaseMode(ReleaseMode.stop);
-      _playerPool.add(player);
+  void _ensureInitialized() {
+    if (_isInitialized) return;
+    _isInitialized = true;
+    try {
+      for (int i = 0; i < _poolSize; i++) {
+        final player = AudioPlayer();
+        player.setReleaseMode(ReleaseMode.stop);
+        _playerPool.add(player);
+      }
+    } catch (_) {
+      // Handle test environments gracefully
     }
   }
 
@@ -40,6 +45,8 @@ class AudioPlayerService {
     double intensity = 1.0,
     double durationSeconds = 1.2,
   }) async {
+    _ensureInitialized();
+
     final String cacheKey = '${note.id}_${settings.fluteType.name}_${settings.octaveShift}';
 
     Uint8List? wavBytes = _noteWavCache[cacheKey];

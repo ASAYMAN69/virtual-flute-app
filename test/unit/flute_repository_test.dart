@@ -4,6 +4,8 @@ import 'package:virtual_flute_app/data/repositories/song_repository.dart';
 import 'package:virtual_flute_app/domain/models/recording.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   group('Repository Unit Tests', () {
     test('FluteRepository provides all standard notes and scales', () {
       final fluteRepo = FluteRepository();
