@@ -1,0 +1,107 @@
+name: Flutter CI/CD Build & Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  # 1. Analyze and Run Automated Unit & Widget Tests
+  analyze_and_test:
+    name: Code Quality & Automated Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Run Static Code Analysis
+        run: flutter analyze
+
+      - name: Run Unit & Widget Tests
+        run: flutter test --coverage
+
+  # 2. Compile Android App (APK & App Bundle)
+  build_android:
+    name: Build Android App (APK & AAB)
+    needs: analyze_and_test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Build Android APK (Release)
+        run: flutter build apk --release
+
+      - name: Build Android App Bundle (AAB)
+        run: flutter build appbundle --release
+
+      - name: Upload Android APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: virtual-flute-android-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Upload Android AppBundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: virtual-flute-android-bundle
+          path: build/app/outputs/bundle/release/app-release.aab
+
+  # 3. Compile iOS App
+  build_ios:
+    name: Build iOS App
+    needs: analyze_and_test
+    runs-on: macos-14
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Build iOS (No Codesign for CI)
+        run: flutter build ios --release --no-codesign
+
+      - name: Upload iOS Build Runner
+        uses: actions/upload-artifact@v4
+        with:
+          name: virtual-flute-ios-app
+          path: build/ios/iphoneos/Runner.app
