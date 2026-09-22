@@ -47,7 +47,7 @@ class BreathControlPanel extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Octave selector
+              // Octave selector with 48x48dp target sizing
               Row(
                 children: [
                   const Text(
@@ -66,8 +66,7 @@ class BreathControlPanel extends StatelessWidget {
                       onOctaveChanged(newSelection.first);
                     },
                     style: ButtonStyle(
-                      visualDensity: VisualDensity.compact,
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      tapTargetSize: MaterialTapTargetSize.padded,
                       backgroundColor: WidgetStateProperty.resolveWith((states) {
                         if (states.contains(WidgetState.selected)) {
                           return AppColors.breathCyan.withValues(alpha: 0.25);
@@ -84,7 +83,7 @@ class BreathControlPanel extends StatelessWidget {
                 children: [
                   IconButton.filledTonal(
                     onPressed: onOpenAll,
-                    icon: const Icon(Icons.radio_button_unchecked, size: 18),
+                    icon: const Icon(Icons.radio_button_unchecked, size: 20),
                     tooltip: 'Open all tone holes',
                     style: IconButton.styleFrom(
                       backgroundColor: AppColors.woodwindCard,
@@ -94,7 +93,7 @@ class BreathControlPanel extends StatelessWidget {
                   const SizedBox(width: 6),
                   IconButton.filledTonal(
                     onPressed: onCloseAll,
-                    icon: const Icon(Icons.circle, size: 18),
+                    icon: const Icon(Icons.circle, size: 20),
                     tooltip: 'Close all tone holes',
                     style: IconButton.styleFrom(
                       backgroundColor: AppColors.woodwindCard,
@@ -197,30 +196,34 @@ class BreathControlPanel extends StatelessWidget {
 
           const SizedBox(height: 12),
 
-          // Row 3: Breath Intensity Slider
+          // Row 3: Breath Intensity Slider with Semantics
           Row(
             children: [
               const Icon(Icons.waves, color: AppColors.breathCyan, size: 18),
               const SizedBox(width: 8),
               const Text(
                 'Air Flow:',
-                style: TextStyle(color: AppColors.textSecondary, fontSize: 12),
+                style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
               ),
               Expanded(
-                child: Slider(
-                  value: breathIntensity,
-                  min: 0.2,
-                  max: 1.0,
-                  divisions: 8,
-                  label: '${(breathIntensity * 100).toInt()}%',
-                  onChanged: onIntensityChanged,
+                child: Semantics(
+                  label: 'Air Flow Breath Intensity',
+                  child: Slider(
+                    value: breathIntensity,
+                    min: 0.2,
+                    max: 1.0,
+                    divisions: 8,
+                    semanticFormatterCallback: (val) => '${(val * 100).round()}% air flow intensity',
+                    label: '${(breathIntensity * 100).toInt()}%',
+                    onChanged: onIntensityChanged,
+                  ),
                 ),
               ),
               Text(
                 '${(breathIntensity * 100).toInt()}%',
                 style: const TextStyle(
                   color: AppColors.breathCyan,
-                  fontSize: 12,
+                  fontSize: 13,
                   fontWeight: FontWeight.bold,
                 ),
               ),

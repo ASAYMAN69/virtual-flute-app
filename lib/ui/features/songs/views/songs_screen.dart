@@ -90,7 +90,7 @@ class SongsScreen extends StatelessWidget {
                     Text(
                       song.description,
                       style: const TextStyle(
-                        color: AppColors.textMuted,
+                        color: AppColors.textSecondary,
                         fontSize: 13,
                       ),
                     ),
@@ -105,21 +105,19 @@ class SongsScreen extends StatelessWidget {
                             fontSize: 12,
                           ),
                         ),
-                        FilledButton.icon(
-                          onPressed: () {
-                            viewModel.selectSong(song);
-                            Navigator.of(context).push(
-                              MaterialPageRoute<void>(
-                                builder: (_) => const SongPlayAlongScreen(),
+                        Row(
+                          children: [
+                            Text(
+                              'Tap to practice',
+                              style: TextStyle(
+                                color: AppColors.breathCyan,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
                               ),
-                            );
-                          },
-                          icon: const Icon(Icons.play_arrow, size: 16),
-                          label: const Text('Practice'),
-                          style: FilledButton.styleFrom(
-                            backgroundColor: AppColors.breathCyan,
-                            foregroundColor: AppColors.woodwindDark,
-                          ),
+                            ),
+                            const SizedBox(width: 4),
+                            const Icon(Icons.arrow_forward_ios, size: 12, color: AppColors.breathCyan),
+                          ],
                         ),
                       ],
                     ),

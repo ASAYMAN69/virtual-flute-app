@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 
-/// Interactive tone hole widget with tactile visual feedback and accessibility semantics.
+/// Interactive tone hole widget with tactile visual feedback and standard WCAG accessibility semantics.
 class FluteHoleWidget extends StatelessWidget {
   const FluteHoleWidget({
     super.key,
@@ -22,11 +22,10 @@ class FluteHoleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String stateText = isClosed ? 'Closed' : 'Open';
-    final String semanticLabel = 'Tone Hole ${index + 1}, currently $stateText. Tap to ${isClosed ? 'open' : 'close'}.';
-
     return Semantics(
-      label: semanticLabel,
+      label: holeLabel ?? 'Tone Hole ${index + 1}',
+      value: isClosed ? 'Closed' : 'Open',
+      hint: isClosed ? 'Double tap to open hole' : 'Double tap to close hole',
       button: true,
       toggled: isClosed,
       child: GestureDetector(
@@ -89,21 +88,25 @@ class FluteHoleWidget extends StatelessWidget {
                       height: diameter * 0.45,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: isClosed ? Colors.white.withValues(alpha: 0.9) : AppColors.textMuted.withValues(alpha: 0.3),
+                        color: isClosed
+                            ? Colors.white.withValues(alpha: 0.9)
+                            : AppColors.textMuted.withValues(alpha: 0.3),
                       ),
                     ),
                   ),
                 ),
               ),
               const SizedBox(height: 6),
-              Text(
-                holeLabel ?? 'Hole ${index + 1}',
-                style: TextStyle(
-                  color: isHighlighted
-                      ? AppColors.goldAccent
-                      : (isClosed ? AppColors.breathCyan : AppColors.textSecondary),
-                  fontSize: 11,
-                  fontWeight: isHighlighted ? FontWeight.bold : FontWeight.w500,
+              ExcludeSemantics(
+                child: Text(
+                  holeLabel ?? 'Hole ${index + 1}',
+                  style: TextStyle(
+                    color: isHighlighted
+                        ? AppColors.goldAccent
+                        : (isClosed ? AppColors.breathCyan : AppColors.textSecondary),
+                    fontSize: 12,
+                    fontWeight: isHighlighted ? FontWeight.bold : FontWeight.w500,
+                  ),
                 ),
               ),
             ],

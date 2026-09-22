@@ -5,7 +5,7 @@ import '../../../../data/repositories/song_repository.dart';
 import '../../../../domain/models/recording.dart';
 import '../../flute/view_models/flute_view_model.dart';
 
-/// Screen displaying user's saved flute performance recordings.
+/// Screen displaying user's saved flute performance recordings with accessible confirmations.
 class RecordingsScreen extends StatelessWidget {
   const RecordingsScreen({super.key});
 
@@ -42,7 +42,7 @@ class RecordingsScreen extends StatelessWidget {
                   const Text(
                     'Tap the record button on the Flute screen\nto capture your playing session.',
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: AppColors.textMuted, fontSize: 13),
+                    style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
                   ),
                 ],
               ),
@@ -67,7 +67,7 @@ class RecordingsScreen extends StatelessWidget {
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     subtitle: Text(
-                      '${rec.fluteTypeName} • $durationSec s • ${rec.events.length} notes\n${rec.createdAt.toLocal().toString().substring(0, 16)}',
+                      '${rec.fluteTypeName} • $durationSec s • ${rec.events.length} notes',
                       style: const TextStyle(fontSize: 12, color: AppColors.textSecondary),
                     ),
                     trailing: Row(
@@ -75,7 +75,7 @@ class RecordingsScreen extends StatelessWidget {
                       children: [
                         IconButton(
                           icon: const Icon(Icons.play_circle_fill, color: AppColors.breathCyan, size: 32),
-                          tooltip: 'Play recording',
+                          tooltip: 'Play recording ${rec.title}',
                           onPressed: () async {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
@@ -90,10 +90,33 @@ class RecordingsScreen extends StatelessWidget {
                           },
                         ),
                         IconButton(
-                          icon: const Icon(Icons.delete_outline, color: AppColors.textMuted),
-                          tooltip: 'Delete recording',
-                          onPressed: () {
-                            songRepository.deleteRecording(rec.id);
+                          icon: const Icon(Icons.delete_outline, color: AppColors.textSecondary),
+                          tooltip: 'Delete recording ${rec.title}',
+                          onPressed: () async {
+                            final bool? confirmed = await showDialog<bool>(
+                              context: context,
+                              builder: (ctx) => AlertDialog(
+                                title: const Text('Delete Recording?'),
+                                content: Text('Are you sure you want to delete "${rec.title}"? This cannot be undone.'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.of(ctx).pop(false),
+                                    child: const Text('Cancel'),
+                                  ),
+                                  FilledButton(
+                                    onPressed: () => Navigator.of(ctx).pop(true),
+                                    style: FilledButton.styleFrom(
+                                      backgroundColor: AppColors.fluteHoleActive,
+                                    ),
+                                    child: const Text('Delete'),
+                                  ),
+                                ],
+                              ),
+                            );
+
+                            if (confirmed == true) {
+                              songRepository.deleteRecording(rec.id);
+                            }
                           },
                         ),
                       ],

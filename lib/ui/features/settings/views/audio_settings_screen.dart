@@ -123,14 +123,18 @@ class AudioSettingsScreen extends StatelessWidget {
                       Text('${(settings.masterVolume * 100).toInt()}%', style: const TextStyle(color: AppColors.breathCyan)),
                     ],
                   ),
-                  Slider(
-                    value: settings.masterVolume,
-                    min: 0.0,
-                    max: 1.0,
-                    divisions: 10,
-                    onChanged: (val) {
-                      fluteViewModel.updateSettings(settings.copyWith(masterVolume: val));
-                    },
+                  Semantics(
+                    label: 'Master Volume',
+                    child: Slider(
+                      value: settings.masterVolume,
+                      min: 0.0,
+                      max: 1.0,
+                      divisions: 10,
+                      semanticFormatterCallback: (val) => '${(val * 100).round()}% volume',
+                      onChanged: (val) {
+                        fluteViewModel.updateSettings(settings.copyWith(masterVolume: val));
+                      },
+                    ),
                   ),
 
                   const Divider(color: AppColors.woodwindSurface),
@@ -143,14 +147,18 @@ class AudioSettingsScreen extends StatelessWidget {
                       Text('${(settings.vibratoDepth * 100).toInt()}%', style: const TextStyle(color: AppColors.breathCyan)),
                     ],
                   ),
-                  Slider(
-                    value: settings.vibratoDepth,
-                    min: 0.0,
-                    max: 1.0,
-                    divisions: 10,
-                    onChanged: (val) {
-                      fluteViewModel.updateSettings(settings.copyWith(vibratoDepth: val));
-                    },
+                  Semantics(
+                    label: 'Vibrato Depth',
+                    child: Slider(
+                      value: settings.vibratoDepth,
+                      min: 0.0,
+                      max: 1.0,
+                      divisions: 10,
+                      semanticFormatterCallback: (val) => '${(val * 100).round()}% vibrato depth',
+                      onChanged: (val) {
+                        fluteViewModel.updateSettings(settings.copyWith(vibratoDepth: val));
+                      },
+                    ),
                   ),
 
                   const Divider(color: AppColors.woodwindSurface),
@@ -163,14 +171,18 @@ class AudioSettingsScreen extends StatelessWidget {
                       Text('${(settings.breathAirVolume * 100).toInt()}%', style: const TextStyle(color: AppColors.breathCyan)),
                     ],
                   ),
-                  Slider(
-                    value: settings.breathAirVolume,
-                    min: 0.0,
-                    max: 1.0,
-                    divisions: 10,
-                    onChanged: (val) {
-                      fluteViewModel.updateSettings(settings.copyWith(breathAirVolume: val));
-                    },
+                  Semantics(
+                    label: 'Breath Chiff Air Amount',
+                    child: Slider(
+                      value: settings.breathAirVolume,
+                      min: 0.0,
+                      max: 1.0,
+                      divisions: 10,
+                      semanticFormatterCallback: (val) => '${(val * 100).round()}% breath air amount',
+                      onChanged: (val) {
+                        fluteViewModel.updateSettings(settings.copyWith(breathAirVolume: val));
+                      },
+                    ),
                   ),
                 ],
               ),
