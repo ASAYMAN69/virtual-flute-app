@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../domain/models/flute_scale.dart';
-import '../view_models/flute_view_model.dart';
-import 'widgets/breath_control_panel.dart';
-import 'widgets/flute_instrument_view.dart';
-import 'widgets/note_display_panel.dart';
+import 'package:virtual_flute_app/ui/core/theme/app_colors.dart';
+import 'package:virtual_flute_app/domain/models/flute_scale.dart';
+import 'package:virtual_flute_app/ui/features/flute/view_models/flute_view_model.dart';
+import 'package:virtual_flute_app/ui/features/flute/views/widgets/breath_control_panel.dart';
+import 'package:virtual_flute_app/ui/features/flute/views/widgets/flute_instrument_view.dart';
+import 'package:virtual_flute_app/ui/features/flute/views/widgets/note_display_panel.dart';
 
 /// Main interactive virtual flute playing screen.
 class FluteScreen extends StatelessWidget {
@@ -55,7 +55,7 @@ class FluteScreen extends StatelessWidget {
                       ),
                       Text(
                         scale.description,
-                        style: const TextStyle(fontSize: 11, color: AppColors.textMuted),
+                        style: const TextStyle(fontSize: 11, color: AppColors.textSecondary),
                       ),
                     ],
                   ),

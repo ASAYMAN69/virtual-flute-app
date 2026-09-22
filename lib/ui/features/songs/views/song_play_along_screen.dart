@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../domain/models/flute_song.dart';
-import '../../flute/view_models/flute_view_model.dart';
-import '../../flute/views/widgets/flute_instrument_view.dart';
-import '../view_models/songs_view_model.dart';
+import 'package:virtual_flute_app/ui/core/theme/app_colors.dart';
+import 'package:virtual_flute_app/domain/models/flute_song.dart';
+import 'package:virtual_flute_app/ui/features/flute/view_models/flute_view_model.dart';
+import 'package:virtual_flute_app/ui/features/flute/views/widgets/flute_instrument_view.dart';
+import 'package:virtual_flute_app/ui/features/songs/view_models/songs_view_model.dart';
 
 /// Interactive play-along screen with real-time target note prompts and score.
 class SongPlayAlongScreen extends StatelessWidget {
@@ -101,7 +101,7 @@ class SongPlayAlongScreen extends StatelessWidget {
                             step.lyric!,
                             style: TextStyle(
                               fontSize: 11,
-                              color: isCurrent ? AppColors.woodwindDark : AppColors.textMuted,
+                              color: isCurrent ? AppColors.woodwindDark : AppColors.textSecondary,
                             ),
                           ),
                         ],
@@ -133,7 +133,7 @@ class SongPlayAlongScreen extends StatelessWidget {
                         const Text(
                           'TARGET NOTE',
                           style: TextStyle(
-                            color: AppColors.textMuted,
+                            color: AppColors.textSecondary,
                             fontSize: 10,
                             letterSpacing: 1.1,
                           ),

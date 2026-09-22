@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../domain/models/audio_settings.dart';
-import '../../flute/view_models/flute_view_model.dart';
+import 'package:virtual_flute_app/ui/core/theme/app_colors.dart';
+import 'package:virtual_flute_app/domain/models/audio_settings.dart';
+import 'package:virtual_flute_app/ui/features/flute/view_models/flute_view_model.dart';
 
 /// Screen for customizing virtual flute acoustics, blowing triggers, and presets.
 class AudioSettingsScreen extends StatelessWidget {

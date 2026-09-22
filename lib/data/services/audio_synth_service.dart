@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 import 'dart:typed_data';
-import '../../domain/models/audio_settings.dart';
-import '../../domain/models/flute_note.dart';
+import 'package:virtual_flute_app/domain/models/audio_settings.dart';
+import 'package:virtual_flute_app/domain/models/flute_note.dart';
 
 /// Pure Dart sound synthesizer that creates realistic Flute PCM audio waves in WAV format.
 class AudioSynthService {

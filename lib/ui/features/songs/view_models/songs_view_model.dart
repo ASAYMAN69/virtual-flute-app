@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
-import '../../../../data/repositories/flute_repository.dart';
-import '../../../../data/repositories/song_repository.dart';
-import '../../../../domain/models/audio_settings.dart';
-import '../../../../domain/models/flute_note.dart';
-import '../../../../domain/models/flute_song.dart';
+import 'package:virtual_flute_app/data/repositories/flute_repository.dart';
+import 'package:virtual_flute_app/data/repositories/song_repository.dart';
+import 'package:virtual_flute_app/domain/models/audio_settings.dart';
+import 'package:virtual_flute_app/domain/models/flute_note.dart';
+import 'package:virtual_flute_app/domain/models/flute_song.dart';
 
 /// ViewModel managing song tutorials and play-along exercises.
 class SongsViewModel extends ChangeNotifier {

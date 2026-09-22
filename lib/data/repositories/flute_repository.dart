@@ -1,7 +1,7 @@
-import '../../domain/models/audio_settings.dart';
-import '../../domain/models/flute_note.dart';
-import '../../domain/models/flute_scale.dart';
-import '../services/audio_player_service.dart';
+import 'package:virtual_flute_app/domain/models/audio_settings.dart';
+import 'package:virtual_flute_app/domain/models/flute_note.dart';
+import 'package:virtual_flute_app/domain/models/flute_scale.dart';
+import 'package:virtual_flute_app/data/services/audio_player_service.dart';
 
 /// Repository managing flute note models, scales, and audio triggering.
 class FluteRepository {

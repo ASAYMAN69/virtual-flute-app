@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_colors.dart';
+import 'package:virtual_flute_app/ui/core/theme/app_colors.dart';
 
 /// App-wide ThemeData for Virtual Flute.
 class AppTheme {

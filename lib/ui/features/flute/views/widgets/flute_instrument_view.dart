@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../domain/models/audio_settings.dart';
-import 'flute_hole_widget.dart';
+import 'package:virtual_flute_app/ui/core/theme/app_colors.dart';
+import 'package:virtual_flute_app/domain/models/audio_settings.dart';
+import 'package:virtual_flute_app/ui/features/flute/views/widgets/flute_hole_widget.dart';
 
 /// Renders the virtual flute body with all 6 tone holes and embouchure mouthpiece.
 class FluteInstrumentView extends StatelessWidget {

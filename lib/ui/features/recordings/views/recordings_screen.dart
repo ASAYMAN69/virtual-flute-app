@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../data/repositories/song_repository.dart';
-import '../../../../domain/models/recording.dart';
-import '../../flute/view_models/flute_view_model.dart';
+import 'package:virtual_flute_app/ui/core/theme/app_colors.dart';
+import 'package:virtual_flute_app/data/repositories/song_repository.dart';
+import 'package:virtual_flute_app/domain/models/recording.dart';
+import 'package:virtual_flute_app/ui/features/flute/view_models/flute_view_model.dart';
 
 /// Screen displaying user's saved flute performance recordings with accessible confirmations.
 class RecordingsScreen extends StatelessWidget {
@@ -27,7 +27,7 @@ class RecordingsScreen extends StatelessWidget {
                   Icon(
                     Icons.mic_none,
                     size: 64,
-                    color: AppColors.textMuted.withValues(alpha: 0.5),
+                    color: AppColors.textSecondary.withValues(alpha: 0.5),
                   ),
                   const SizedBox(height: 16),
                   const Text(
@@ -35,7 +35,7 @@ class RecordingsScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: AppColors.textSecondary,
+                      color: AppColors.textPrimary,
                     ),
                   ),
                   const SizedBox(height: 8),

@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import 'core/theme/app_colors.dart';
-import 'core/theme/app_theme.dart';
-import 'data/repositories/flute_repository.dart';
-import 'data/repositories/song_repository.dart';
-import 'data/services/audio_player_service.dart';
-import 'data/services/audio_synth_service.dart';
-import 'ui/features/fingering_guide/views/fingering_guide_screen.dart';
-import 'ui/features/flute/view_models/flute_view_model.dart';
-import 'ui/features/flute/views/flute_screen.dart';
-import 'ui/features/recordings/views/recordings_screen.dart';
-import 'ui/features/settings/views/audio_settings_screen.dart';
-import 'ui/features/songs/view_models/songs_view_model.dart';
-import 'ui/features/songs/views/songs_screen.dart';
+import 'package:virtual_flute_app/ui/core/theme/app_colors.dart';
+import 'package:virtual_flute_app/ui/core/theme/app_theme.dart';
+import 'package:virtual_flute_app/data/repositories/flute_repository.dart';
+import 'package:virtual_flute_app/data/repositories/song_repository.dart';
+import 'package:virtual_flute_app/data/services/audio_player_service.dart';
+import 'package:virtual_flute_app/data/services/audio_synth_service.dart';
+import 'package:virtual_flute_app/ui/features/fingering_guide/views/fingering_guide_screen.dart';
+import 'package:virtual_flute_app/ui/features/flute/view_models/flute_view_model.dart';
+import 'package:virtual_flute_app/ui/features/flute/views/flute_screen.dart';
+import 'package:virtual_flute_app/ui/features/recordings/views/recordings_screen.dart';
+import 'package:virtual_flute_app/ui/features/settings/views/audio_settings_screen.dart';
+import 'package:virtual_flute_app/ui/features/songs/view_models/songs_view_model.dart';
+import 'package:virtual_flute_app/ui/features/songs/views/songs_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

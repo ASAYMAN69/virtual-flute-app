@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../domain/models/flute_song.dart';
-import '../view_models/songs_view_model.dart';
-import 'song_play_along_screen.dart';
+import 'package:virtual_flute_app/ui/core/theme/app_colors.dart';
+import 'package:virtual_flute_app/domain/models/flute_song.dart';
+import 'package:virtual_flute_app/ui/features/songs/view_models/songs_view_model.dart';
+import 'package:virtual_flute_app/ui/features/songs/views/song_play_along_screen.dart';
 
 /// Songs library screen with practice levels.
 class SongsScreen extends StatelessWidget {
@@ -105,7 +105,7 @@ class SongsScreen extends StatelessWidget {
                             fontSize: 12,
                           ),
                         ),
-                        Row(
+                        const Row(
                           children: [
                             Text(
                               'Tap to practice',
@@ -115,8 +115,8 @@ class SongsScreen extends StatelessWidget {
                                 fontSize: 13,
                               ),
                             ),
-                            const SizedBox(width: 4),
-                            const Icon(Icons.arrow_forward_ios, size: 12, color: AppColors.breathCyan),
+                            SizedBox(width: 4),
+                            Icon(Icons.arrow_forward_ios, size: 12, color: AppColors.breathCyan),
                           ],
                         ),
                       ],

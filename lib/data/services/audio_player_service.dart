@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 import 'package:audioplayers/audioplayers.dart';
-import '../../domain/models/audio_settings.dart';
-import '../../domain/models/flute_note.dart';
-import 'audio_synth_service.dart';
+import 'package:virtual_flute_app/domain/models/audio_settings.dart';
+import 'package:virtual_flute_app/domain/models/flute_note.dart';
+import 'package:virtual_flute_app/data/services/audio_synth_service.dart';
 
 /// Service managing audio playback pool for low-latency virtual flute playing.
 class AudioPlayerService {
