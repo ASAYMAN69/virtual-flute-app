@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:virtual_flute_app/ui/core/theme/app_colors.dart';
 import 'package:virtual_flute_app/domain/models/audio_settings.dart';
+import 'package:virtual_flute_app/ui/core/theme/app_colors.dart';
 import 'package:virtual_flute_app/ui/features/flute/views/widgets/flute_hole_widget.dart';
 
 /// Renders the virtual flute body with all 6 tone holes and embouchure mouthpiece.
@@ -71,81 +71,85 @@ class FluteInstrumentView extends StatelessWidget {
     Color trimColor,
   ) {
     return Center(
-      child: Container(
-        width: 105,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(45),
-          gradient: LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-            colors: [
-              bodyDark,
-              bodyLight,
-              bodyLight,
-              bodyDark,
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Container(
+          width: 105,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(45),
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                bodyDark,
+                bodyLight,
+                bodyLight,
+                bodyDark,
+              ],
+              stops: const [0.0, 0.35, 0.65, 1.0],
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: isBlowing
+                    ? AppColors.breathCyan.withValues(alpha: 0.4)
+                    : Colors.black.withValues(alpha: 0.5),
+                blurRadius: isBlowing ? 24 : 12,
+                spreadRadius: isBlowing ? 3 : 1,
+              ),
             ],
-            stops: const [0.0, 0.35, 0.65, 1.0],
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: isBlowing
-                  ? AppColors.breathCyan.withValues(alpha: 0.4)
-                  : Colors.black.withValues(alpha: 0.5),
-              blurRadius: isBlowing ? 24 : 12,
-              spreadRadius: isBlowing ? 3 : 1,
+            border: Border.all(
+              color: isBlowing ? AppColors.breathCyan : trimColor.withValues(alpha: 0.6),
+              width: isBlowing ? 2.5 : 1.5,
             ),
-          ],
-          border: Border.all(
-            color: isBlowing ? AppColors.breathCyan : trimColor.withValues(alpha: 0.6),
-            width: isBlowing ? 2.5 : 1.5,
           ),
-        ),
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            // Embouchure / Mouthpiece indicator on top of flute
-            _buildEmbouchureMouthpiece(trimColor),
-            const SizedBox(height: 12),
-            Container(
-              height: 3,
-              width: 70,
-              decoration: BoxDecoration(
-                color: trimColor,
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
-            const SizedBox(height: 10),
-            // 6 Tone Holes (3 for left hand, 3 for right hand)
-            for (int i = 0; i < 6; i++) ...[
-              FluteHoleWidget(
-                index: i,
-                isClosed: holes[i],
-                isHighlighted: targetHolePattern != null && i < targetHolePattern!.length && targetHolePattern![i],
-                onTap: () => onHoleToggled(i),
-                holeLabel: 'Hole ${i + 1}',
-              ),
-              if (i == 2)
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4),
-                  child: Container(
-                    height: 2,
-                    width: 50,
-                    color: trimColor.withValues(alpha: 0.4),
-                  ),
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Embouchure / Mouthpiece indicator on top of flute
+              _buildEmbouchureMouthpiece(trimColor),
+              const SizedBox(height: 10),
+              Container(
+                height: 3,
+                width: 70,
+                decoration: BoxDecoration(
+                  color: trimColor,
+                  borderRadius: BorderRadius.circular(2),
                 ),
-            ],
-            const SizedBox(height: 8),
-            // Flute End Ring
-            Container(
-              height: 8,
-              width: 80,
-              decoration: BoxDecoration(
-                color: trimColor,
-                borderRadius: BorderRadius.circular(4),
               ),
-            ),
-          ],
+              const SizedBox(height: 6),
+              // 6 Tone Holes (3 for left hand, 3 for right hand)
+              for (int i = 0; i < 6; i++) ...[
+                FluteHoleWidget(
+                  index: i,
+                  isClosed: holes[i],
+                  isHighlighted: targetHolePattern != null && i < targetHolePattern!.length && targetHolePattern![i],
+                  onTap: () => onHoleToggled(i),
+                  holeLabel: 'Hole ${i + 1}',
+                  diameter: 48.0,
+                ),
+                if (i == 2)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 2),
+                    child: Container(
+                      height: 2,
+                      width: 50,
+                      color: trimColor.withValues(alpha: 0.4),
+                    ),
+                  ),
+              ],
+              const SizedBox(height: 6),
+              // Flute End Ring
+              Container(
+                height: 8,
+                width: 80,
+                decoration: BoxDecoration(
+                  color: trimColor,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -158,78 +162,82 @@ class FluteInstrumentView extends StatelessWidget {
     Color trimColor,
   ) {
     return Center(
-      child: Container(
-        height: 105,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(45),
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              bodyDark,
-              bodyLight,
-              bodyLight,
-              bodyDark,
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Container(
+          height: 105,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(45),
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                bodyDark,
+                bodyLight,
+                bodyLight,
+                bodyDark,
+              ],
+              stops: const [0.0, 0.35, 0.65, 1.0],
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: isBlowing
+                    ? AppColors.breathCyan.withValues(alpha: 0.4)
+                    : Colors.black.withValues(alpha: 0.5),
+                blurRadius: isBlowing ? 24 : 12,
+                spreadRadius: isBlowing ? 3 : 1,
+              ),
             ],
-            stops: const [0.0, 0.35, 0.65, 1.0],
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: isBlowing
-                  ? AppColors.breathCyan.withValues(alpha: 0.4)
-                  : Colors.black.withValues(alpha: 0.5),
-              blurRadius: isBlowing ? 24 : 12,
-              spreadRadius: isBlowing ? 3 : 1,
+            border: Border.all(
+              color: isBlowing ? AppColors.breathCyan : trimColor.withValues(alpha: 0.6),
+              width: isBlowing ? 2.5 : 1.5,
             ),
-          ],
-          border: Border.all(
-            color: isBlowing ? AppColors.breathCyan : trimColor.withValues(alpha: 0.6),
-            width: isBlowing ? 2.5 : 1.5,
           ),
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _buildEmbouchureMouthpiece(trimColor),
-            const SizedBox(width: 12),
-            Container(
-              width: 3,
-              height: 70,
-              decoration: BoxDecoration(
-                color: trimColor,
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
-            const SizedBox(width: 10),
-            for (int i = 0; i < 6; i++) ...[
-              FluteHoleWidget(
-                index: i,
-                isClosed: holes[i],
-                isHighlighted: targetHolePattern != null && i < targetHolePattern!.length && targetHolePattern![i],
-                onTap: () => onHoleToggled(i),
-                holeLabel: 'Hole ${i + 1}',
-              ),
-              if (i == 2)
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  child: Container(
-                    width: 2,
-                    height: 50,
-                    color: trimColor.withValues(alpha: 0.4),
-                  ),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _buildEmbouchureMouthpiece(trimColor),
+              const SizedBox(width: 10),
+              Container(
+                width: 3,
+                height: 70,
+                decoration: BoxDecoration(
+                  color: trimColor,
+                  borderRadius: BorderRadius.circular(2),
                 ),
-            ],
-            const SizedBox(width: 8),
-            Container(
-              width: 8,
-              height: 80,
-              decoration: BoxDecoration(
-                color: trimColor,
-                borderRadius: BorderRadius.circular(4),
               ),
-            ),
-          ],
+              const SizedBox(width: 6),
+              for (int i = 0; i < 6; i++) ...[
+                FluteHoleWidget(
+                  index: i,
+                  isClosed: holes[i],
+                  isHighlighted: targetHolePattern != null && i < targetHolePattern!.length && targetHolePattern![i],
+                  onTap: () => onHoleToggled(i),
+                  holeLabel: 'Hole ${i + 1}',
+                  diameter: 48.0,
+                ),
+                if (i == 2)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 2),
+                    child: Container(
+                      width: 2,
+                      height: 50,
+                      color: trimColor.withValues(alpha: 0.4),
+                    ),
+                  ),
+              ],
+              const SizedBox(width: 6),
+              Container(
+                width: 8,
+                height: 80,
+                decoration: BoxDecoration(
+                  color: trimColor,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
