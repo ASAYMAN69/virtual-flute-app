@@ -51,9 +51,11 @@ class NoteDisplayPanel extends StatelessWidget {
                 ),
             ],
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
               // Left: Big Note Letter & Octave
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

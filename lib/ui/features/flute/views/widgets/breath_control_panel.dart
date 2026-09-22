@@ -44,11 +44,15 @@ class BreathControlPanel extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           // Row 1: Octave Selectors & Quick Hole presets
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Wrap(
+            alignment: WrapAlignment.spaceBetween,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            spacing: 8,
+            runSpacing: 8,
             children: [
               // Octave selector with 48x48dp target sizing
               Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   const Text(
                     'Octave: ',
@@ -80,6 +84,7 @@ class BreathControlPanel extends StatelessWidget {
 
               // Quick Action buttons
               Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton.filledTonal(
                     onPressed: onOpenAll,
