@@ -51,61 +51,67 @@ class BreathControlPanel extends StatelessWidget {
             runSpacing: 8,
             children: [
               // Octave selector with 48x48dp target sizing
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Text(
-                    'Octave: ',
-                    style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
-                  ),
-                  const SizedBox(width: 4),
-                  SegmentedButton<int>(
-                    segments: const [
-                      ButtonSegment(value: -1, label: Text('Low')),
-                      ButtonSegment(value: 0, label: Text('Mid')),
-                      ButtonSegment(value: 1, label: Text('High')),
-                    ],
-                    selected: {octaveShift},
-                    onSelectionChanged: (newSelection) {
-                      onOctaveChanged(newSelection.first);
-                    },
-                    style: ButtonStyle(
-                      tapTargetSize: MaterialTapTargetSize.padded,
-                      backgroundColor: WidgetStateProperty.resolveWith((states) {
-                        if (states.contains(WidgetState.selected)) {
-                          return AppColors.breathCyan.withValues(alpha: 0.25);
-                        }
-                        return AppColors.woodwindCard;
-                      }),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      'Octave: ',
+                      style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
                     ),
-                  ),
-                ],
+                    const SizedBox(width: 4),
+                    SegmentedButton<int>(
+                      segments: const [
+                        ButtonSegment(value: -1, label: Text('Low')),
+                        ButtonSegment(value: 0, label: Text('Mid')),
+                        ButtonSegment(value: 1, label: Text('High')),
+                      ],
+                      selected: {octaveShift},
+                      onSelectionChanged: (newSelection) {
+                        onOctaveChanged(newSelection.first);
+                      },
+                      style: ButtonStyle(
+                        tapTargetSize: MaterialTapTargetSize.padded,
+                        backgroundColor: WidgetStateProperty.resolveWith((states) {
+                          if (states.contains(WidgetState.selected)) {
+                            return AppColors.breathCyan.withValues(alpha: 0.25);
+                          }
+                          return AppColors.woodwindCard;
+                        }),
+                      ),
+                    ),
+                  ],
+                ),
               ),
 
               // Quick Action buttons
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton.filledTonal(
-                    onPressed: onOpenAll,
-                    icon: const Icon(Icons.radio_button_unchecked, size: 20),
-                    tooltip: 'Open all tone holes',
-                    style: IconButton.styleFrom(
-                      backgroundColor: AppColors.woodwindCard,
-                      foregroundColor: AppColors.textSecondary,
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton.filledTonal(
+                      onPressed: onOpenAll,
+                      icon: const Icon(Icons.radio_button_unchecked, size: 20),
+                      tooltip: 'Open all tone holes',
+                      style: IconButton.styleFrom(
+                        backgroundColor: AppColors.woodwindCard,
+                        foregroundColor: AppColors.textSecondary,
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 6),
-                  IconButton.filledTonal(
-                    onPressed: onCloseAll,
-                    icon: const Icon(Icons.circle, size: 20),
-                    tooltip: 'Close all tone holes',
-                    style: IconButton.styleFrom(
-                      backgroundColor: AppColors.woodwindCard,
-                      foregroundColor: AppColors.fluteHoleActive,
+                    const SizedBox(width: 6),
+                    IconButton.filledTonal(
+                      onPressed: onCloseAll,
+                      icon: const Icon(Icons.circle, size: 20),
+                      tooltip: 'Close all tone holes',
+                      style: IconButton.styleFrom(
+                        backgroundColor: AppColors.woodwindCard,
+                        foregroundColor: AppColors.fluteHoleActive,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
