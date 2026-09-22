@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../domain/models/flute_note.dart';
-import '../../flute/view_models/flute_view_model.dart';
+import 'package:virtual_flute_app/domain/models/flute_note.dart';
+import 'package:virtual_flute_app/ui/core/theme/app_colors.dart';
+import 'package:virtual_flute_app/ui/features/flute/view_models/flute_view_model.dart';
 
 /// Comprehensive Fingering Guide Chart for Woodwind Flute with full VoiceOver/TalkBack support.
 class FingeringGuideScreen extends StatelessWidget {
@@ -97,7 +97,7 @@ class FingeringGuideScreen extends StatelessWidget {
                                   Text(
                                     '(${note.altName}${note.octave})',
                                     style: const TextStyle(
-                                      color: AppColors.textMuted,
+                                      color: AppColors.textSecondary,
                                       fontSize: 13,
                                     ),
                                   ),
@@ -149,7 +149,7 @@ class FingeringGuideScreen extends StatelessWidget {
                       onPressed: () {
                         fluteViewModel.applyFingeringPattern(note.holePattern);
                         fluteViewModel.onBreathStart();
-                        Future.delayed(const Duration(milliseconds: 600), () {
+                        Future<void>.delayed(const Duration(milliseconds: 600), () {
                           fluteViewModel.onBreathEnd();
                         });
                       },

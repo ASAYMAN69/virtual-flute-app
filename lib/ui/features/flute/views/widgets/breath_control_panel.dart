@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../domain/models/audio_settings.dart';
+import 'package:virtual_flute_app/domain/models/audio_settings.dart';
+import 'package:virtual_flute_app/ui/core/theme/app_colors.dart';
 
 /// Interactive breath control panel with embouchure button, octave selectors, and intensity slider.
 class BreathControlPanel extends StatelessWidget {

@@ -84,7 +84,7 @@ class RecordingsScreen extends StatelessWidget {
                               ),
                             );
                             for (final event in rec.events) {
-                              await Future.delayed(Duration(milliseconds: event.durationMs));
+                              await Future<void>.delayed(Duration(milliseconds: event.durationMs));
                               fluteViewModel.setBreathIntensity(event.intensity);
                             }
                           },

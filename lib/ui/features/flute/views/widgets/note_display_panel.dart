@@ -1,7 +1,8 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../domain/models/flute_note.dart';
-import '../../../../domain/models/flute_scale.dart';
+import 'package:virtual_flute_app/domain/models/flute_note.dart';
+import 'package:virtual_flute_app/domain/models/flute_scale.dart';
+import 'package:virtual_flute_app/ui/core/theme/app_colors.dart';
 
 /// Interactive HUD panel displaying currently sounded flute note, solfege, and frequency.
 class NoteDisplayPanel extends StatelessWidget {
