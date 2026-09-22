@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:virtual_flute_app/domain/models/flute_note.dart';
 import 'package:virtual_flute_app/domain/models/flute_scale.dart';

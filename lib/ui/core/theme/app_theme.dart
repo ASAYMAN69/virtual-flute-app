@@ -15,7 +15,7 @@ class AppTheme {
         onSurface: AppColors.textPrimary,
         error: AppColors.fluteHoleActive,
       ),
-      cardTheme: const CardTheme(
+      cardTheme: const CardThemeData(
         color: AppColors.woodwindCard,
         elevation: 2,
         shape: RoundedRectangleBorder(
